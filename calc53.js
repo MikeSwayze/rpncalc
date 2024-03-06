@@ -1871,7 +1871,7 @@ function convert_entry() {
                 j = Number(j);
                 k = Number(k);
                 l = Number(l);
-                DecFt_n.value = parsFlat(l + k / 12 + j / 16 / 12, 8);
+                DecFt_n.value = parsFlat(l + ( k / 12) + (j / 16 / 12), 8);
                 DecMeter_n.value = parsFlat(0.3048 * Number(DecFt_n.value), 8);
                 break;
               case 6: //ft in sx
@@ -1969,7 +1969,7 @@ function OutNum(s) {
     }
     let DecOutFt = Math.abs(Number(DecFt_n.value));
     OutFt = Math.trunc(DecOutFt);
-    let OutIn = Number(Math.trunc((DecOutFt - OutFt) * 12));
+    let OutIn =Math.round( Number((DecOutFt - OutFt) * 12));
     let OutSx = Number(((DecOutFt - OutFt) * 12 - OutIn) * 16).toFixed(2);
     OutFt = NegS + "" + OutFt;
     OutIn = NegS + "" + OutIn;

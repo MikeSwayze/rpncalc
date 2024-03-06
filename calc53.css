@@ -4,13 +4,13 @@
   columns: auto;
   background-color: rgba(100, 100, 100, 0.5);
   position: relative;
-  top: 0;
+  top: 2px;
   left: 0;
   border: 3px solid black;
   margin: 0px;
   padding: 0px;
   width: 225px;
-  height: 25px;
+  height: 23px;
   pointer-events: all;
   touch-action: auto;
 }
@@ -302,15 +302,14 @@
 #last_x {
   position: relative;
   top: 0px;
-  left: 0px;
+  left: 2px;
   width: 100px;
-  height: 20px;
+  height: 18px;
   border: 1px solid black;
   pointer-events: none
   touch-action: none;
   font-size: 15px;
   font-weight: 700;
   font-family: arial, helvetica, sans-serif;
-  \
 }
 
