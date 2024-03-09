@@ -392,7 +392,8 @@ function add_to_display(data) {
       my_convert.value = 0; //reset  converter
     }
   }
-  oops3: if (data == "-") {
+  oops3: 
+  if (data == "-") {
     x = OutNumU_n.value;
     last_x.value = x.trim();
 
@@ -419,25 +420,25 @@ function add_to_display(data) {
               s = sArr.shift();
               s = s.trim();
               if (s == "ft") {
-                x = Number(DecFt_n.value);
+                l = Number(DecFt_n.value);
               }
               if (s == "in") {
-                x = Number(DecIn_n.value);
+                l = Number(DecIn_n.value);
               }
               if (s == "sx") {
-                x = Number(DecSx_n.value);
+                l = Number(DecSx_n.value);
               }
               if (s == "m") {
-                x = Number(DecMeter_n.value);
+                l = Number(DecMeter_n.value);
               }
               if (s == "mm") {
-                x = Number(Dec_mm_n.value);
+                l = Number(Dec_mm_n.value);
               }
-              x = r - x;
-              x = parsFlat(x, 8);
-              x = Number(x).toPrecision();
-              x = x + s + "**" + y;
-              my_display.value = x;
+              l = r - l;
+              l = parsFlat(l, 8);
+              l = Number(l).toPrecision();
+              l = l + s + "**" + y;
+              my_display.value = l;
               fis_convert();
               convert_entry();
               My_ol.removeChild(My_ol.lastElementChild);
@@ -453,61 +454,23 @@ function add_to_display(data) {
           break oops3;
         }
       } else {
-        if (x.search(/([f-x]{1,2})/i) > -1 && w.search(/([f-x]{1,2})/i) > -1) {
+        if (x.search(/([f-x]{1,2})/i) > -1 && w.search(/([f-x]{1,2})/i) > -1) 
+        {
           //both have units
           n = 1;
           z = "";
-          while (
-            x.search(/^(-?\d*(\.\d*)?)(\e[+|-]?\d*(\.\d*)?)?([f-x]{1,2})/i) > -1
-          ) {
-            x = x.trim();
-            let y = x.split(" ");
-            x = y.join("");
-            const wArr = x.match(
-              /^(-?\d*(\.\d*)?)(\e[+|-]?\d*(\.\d*)?)?([f-x]{1,2})/i
-            );
-            if (wArr.length && wArr) {
-            }
-            y = wArr.shift();
-            y = y.trim();
-            let xx = x.replace(y, "");
-            x = xx.trim();
-
-            if (x.search(/[f-x]{1,2}/i) > -1) {
-              n = n + 1;
-            } else {
-              if (x.length > 0) {
-                x = "";
-              }
-            }
-            if (y.includes("-")) {
-              y = y.replace("-", "");
-            } else {
-              y = "-" + y;
-            }
-            z = z + "" + y;
-          }
-          my_display.value = z.trim();
-          fis_convert();
-          convert_entry();
-          x = OutNumU_n.value;
-          if (My_ol.hasChildNodes()) {
-            w = My_ol.lastElementChild.innerText;
-            if (w == "" || w.length <= 0) {
-              w = "0";
-            }
-            w = w + "" + x;
-            u = w.split(" ");
-            w = u.join("");
-            w = w.trim();
-            my_display.value = w;
-            fis_convert();
-            convert_entry();
-            My_ol.removeChild(My_ol.lastElementChild);
-            my_display.value = OutNumU_n.value;
-          }
+         l=DecFt_n.value;
+         my_display.value = My_ol.lastElementChild.innerText
+         My_ol.removeChild(My_ol.lastElementChild);
+         fis_convert();
+         convert_entry();
+         k=DecFt_n.value;
+         j=k-l;
+         j=parsFlat(Number(j),8);
+         my_display.value = j + "ft";
+         fis_convert();
+         convert_entry();
         }
-
         if (x.search(/([f-x]{1,2})/i) > -1 && w.search(/([f-x]{1,2})/i) == -1) {
           alert(" must be same units");
         } //one has  units
@@ -522,8 +485,8 @@ function add_to_display(data) {
           //simple math add, neither have units
 
           z = Number(w) - Number(x);
-          z = parsFlat(Number(z), 8).toPrecision();
-          if (z.includes(".")) {
+          z = parsFlat(Number(z), 8);
+          if (z.toString().includes(".")) {
           } else {
             z = z + ".";
           }
@@ -1593,44 +1556,59 @@ function fis_convert() {
 }
 
 function parsFlat(x, pF) {
-  if (x.toString().includes("99999")) {
-    pF = Number(x.toString().lastIndexOf("99999"));
-  } else {
-    if (x.toString().includes("00000")) {
-      pF = Number(x.toString().lastIndexOf("00000"));
-    } else {
-      if (Math.abs(x) < 0.1) {
-        pF = pF + 1;
-      }
-      if (Math.abs(x) < 0.01) {
-        pF = pF + 2;
-      }
-      if (Math.abs(x) < 0.001) {
-        pF = pF + 3;
-      }
-      if (Math.abs(x) < 0.0001) {
-        pF = pF + 4;
-      }
-      if (Math.abs(x) < 0.00001) {
-        pF = pF + 5;
-      }
-      //if (Math.abs(x)<.000001){pF=pF+6}
-    }
-  }
+     
+      if (Math.abs(x) < 0.1) {pF = pF + 1 };
+      if (Math.abs(x) < 0.01) {pF = pF + 2 };
+      if (Math.abs(x) < 0.001) { pF = pF + 3};
+      if (Math.abs(x) < 0.0001) {pF = pF + 4};
+      if (Math.abs(x) < 0.00001) {pF = pF + 5};
   pF = Math.round(Number(pF));
-  if (0 < pF < 100) {
-  } else {
-    pF = 8;
+  if (0 < pF < 100) {} else { pF = 8 };
+  if (pF == NaN) {pF = 8};
+    let y = Number(x);
+  function parsIt() 
+  {
+    y = y * Math.pow(10, pF);
+    y = Math.round(y);
+    y = y / Math.pow(10, pF);
+    y = Number(y);
   }
-  if (pF == NaN) {
-    pF = 8;
-  }
-
-  let y = Number(x);
-  y = y * Math.pow(10, pF);
-  y = Math.round(y);
-  y = y / Math.pow(10, pF);
-  y = Number(y);
+    if (y.toString().includes("00000")) {
+      pF = Number(y.toString().lastIndexOf("00000"));
+      parsIt(); 
+    }
+    if (y.toString().includes("0000")) {
+      pF = Number(y.toString().lastIndexOf("0000"));
+      parsIt();    
+    }
+    if (y.toString().includes("000")) {
+      pF = Number(y.toString().lastIndexOf("000"));
+      parsIt();
+    }
+    if (y.toString().includes("99999")) {
+      pF = Number(y.toString().lastIndexOf("99999"));
+      parsIt();
+    }
+        if (y.toString().includes("9999")) {
+      pF = Number(y.toString().lastIndexOf("9999"));
+      parsIt();
+    }
+        if (y.toString().includes("999")) {
+      pF = Number(y.toString().lastIndexOf("999"));
+      parsIt();
+    }
+        if (y.toString().includes("666666")) {
+      pF = Number(y.toString().lastIndexOf("666666"));
+      parsIt();
+    }
+        if (y.toString().includes("333333")) {
+      pF = Number(y.toString().lastIndexOf("333333"));
+      parsIt();
+    }
+    if (y.toString().includes("00000")) {
+      pF = Number(y.toString().lastIndexOf("00000"));
+      parsIt(); 
+    }
 
   return y;
 }
@@ -1798,15 +1776,18 @@ function convert_entry() {
           n = n + 1;
         } else {
           if (
-            x.search(/^(-?\d*(\.\d*)?)(\e[+|-]?\d*(\.\d*)?)?([f-x]{1,2})/i) ==
-            -1
-          ) {
+            x.search(/^(-?\d*(\.\d*)?)(\e[+|-]?\d*(\.\d*)?)?([f-x]{1,2})/i) == -1) 
+            {
             x = "";
           }
         }
       }
       if (n == 1) {
         OutUnit = s;
+        if ((s == "ft") && (chk_fis_unit.value == "fis"))
+        { OutUnit= "fis"}; 
+        if ((s == "mm") && (chk_fis_unit.value == "mm"))
+        { OutUnit= "metric"};
       } else {
         OutUnit = chk_fis_unit.value;
       }
@@ -1952,10 +1933,10 @@ function convert_entry() {
 }
 
 function shuffle() {
-  DecIn_n.value = DecFt_n.value * 12;
-  DecSx_n.value = parsFlat(DecFt_n.value * 12 * 16, 4);
-  DecMeter_n.value = DecFt_n.value * 0.3048;
-  Dec_mm_n.value = parsFlat(DecFt_n.value * 0.3048 * 1000, 4);
+  DecIn_n.value = parsFlat((Number(DecFt_n.value) * 12),8);
+  DecSx_n.value = parsFlat((Number(DecFt_n.value) * 12 * 16), 8);
+  DecMeter_n.value = parsFlat((Number(DecFt_n.value) * 0.3048),8);
+  Dec_mm_n.value = parsFlat((Number(DecFt_n.value) * 0.3048 * 1000), 8);
 }
 function OutNum(s) {
   if (s == "fis") {
@@ -1969,12 +1950,14 @@ function OutNum(s) {
     }
     let DecOutFt = Math.abs(Number(DecFt_n.value));
     OutFt = Math.trunc(DecOutFt);
-    let OutIn =Math.round( Number((DecOutFt - OutFt) * 12));
-    let OutSx = Number(((DecOutFt - OutFt) * 12 - OutIn) * 16).toFixed(2);
+    let DecOutIn= parsFlat(((Number(DecOutFt) - Number(OutFt)) * 12),8);
+    let OutIn =Math.trunc(DecOutIn);
+    let DecOutSx = Number(parsFlat(((Number(DecOutIn) - Number(OutIn)) * 16),8)).toFixed(2);
+    let OutSx =  Math.round(DecOutSx);
     OutFt = NegS + "" + OutFt;
     OutIn = NegS + "" + OutIn;
     OutSx = NegS + "" + OutSx;
-    OutSx = Math.round(Number(OutSx));
+    //OutSx = Math.round(Number(OutSx));
     if (OutSx == 16) {
       OutSx = "";
       OutIn = OutIn + 1;
@@ -2018,10 +2001,8 @@ function OutNum(s) {
     z = "";
     let OutM = Math.trunc(Number(DecMeter_n.value));
     let OutMm = Number(
-      parsFlat((DecMeter_n.value - Math.trunc(DecMeter_n.value)) * 1000),
-      8
-    );
-    OutMm = Math.round(OutMm);
+      parsFlat(Number((DecMeter_n.value - Math.trunc(DecMeter_n.value)) * 1000),8));
+    OutMm = Math.round(Number(OutMm));
     if (OutMm == 1000) {
       OutMm = "";
       OutM = OutM + 1;
