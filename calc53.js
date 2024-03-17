@@ -12,7 +12,7 @@ const Dec_mm_n = document.getElementById("Dec_mm");
 const UnitEx_n = document.getElementById("UnitExp_");
 const OutNumU_n = document.getElementById("OutNumU");
 const invFlag = document.getElementById("inv");
-
+const last_Unit = document.getElementById("lastUnit");
 //  get keyboard events
 my_display.addEventListener("keydown", (event) => {
   event.preventDefault();
@@ -82,6 +82,9 @@ function add_to_display(data) {
   }
   if (data == "Backspace") {
     data = "c";
+  }
+  if (data == "ft" || data == "in" || data == "sx" || data == "m" || data == "mm"){
+    last_Unit.value = data;
   }
   // validate input units--
 
@@ -272,7 +275,7 @@ function add_to_display(data) {
     }
   }
   // return lastX value to display
-  if (data == "LastX") {
+  if (data == "LastX" || data == "L" || data == "l") {
     my_display.value = last_x.value;
   }
   //operators
@@ -1630,10 +1633,9 @@ function convert_entry() {
   if (a.length < 0) {
     alert("booger");
   }
-
   if (a.includes("**")) {
     const wArr = x.match(/-?\d*(\.\d*)?$/i);
-    if (wArr.length && wArr) {
+   if (wArr.length && wArr) {
       let y = wArr.shift();
       y = y.trim();
       UnitEx_n.value = Number(y);
@@ -1716,6 +1718,39 @@ function convert_entry() {
         s +
         "**" +
         UnitEx_n.value;
+    }
+    if (chk_fis_unit.value == "units")  {
+      s=lastUnit.value; 
+      switch(s) {
+        case "ft":
+        OutNumU_n.value =
+        Number(parsFlat(DecFt_n.value, 8)).toPrecision() +
+        s + "**" + UnitEx_n.value;
+        break;
+        case "in":
+        OutNumU_n.value =
+        Number(parsFlat(DecIn_n.value, 8)).toPrecision() +
+        s + "**" + UnitEx_n.value;
+        break;
+        case "sx":
+        OutNumU_n.value =
+        Number(parsFlat(DecSx_n.value, 8)).toPrecision() +
+        s + "**" + UnitEx_n.value;
+        break;
+        case "m":
+        OutNumU_n.value =
+        Number(parsFlat(DecMeter_n.value, 8)).toPrecision() +
+        s + "**" + UnitEx_n.value;
+        break;
+        case "mm":
+        OutNumU_n.value =
+        Number(parsFlat(Dec_mm_n.value, 8)).toPrecision() +
+        s + "**" + UnitEx_n.value;
+        break;
+        default:
+          break;
+      }
+       
     }
   } else {
     if (a == "ft" || a == "in" || a == "sx" || a == "m" || a == "mm") {
@@ -1997,7 +2032,7 @@ function OutNum(s) {
     }
     OutNumU_n.value = z;
   }
-  if (s == "metric" || s == "units") {
+  if (s == "metric" ) {
     z = "";
     let OutM = Math.trunc(Number(DecMeter_n.value));
     let OutMm = Number(
@@ -2024,20 +2059,20 @@ function OutNum(s) {
     }
     OutNumU_n.value = z;
   }
-
-  if (s == "ft") {
+  if ( chk_fis_unit.value == "units") {s=lastUnit.value}
+    if (s == "ft") {
     OutNumU_n.value = Number(parsFlat(DecFt_n.value, 8)) + s;
-  }
-  if (s == "in") {
+    }
+    if (s == "in") {
     OutNumU_n.value = Number(parsFlat(DecIn_n.value, 8)) + s;
-  }
-  if (s == "sx") {
+    }
+    if (s == "sx") {
     OutNumU_n.value = Number(parsFlat(DecSx_n.value, 8)) + s;
-  }
-  if (s == "m") {
+    }
+    if (s == "m") {
     OutNumU_n.value = Number(parsFlat(DecMeter_n.value, 8)) + s;
-  }
-  if (s == "mm") {
+    }
+    if (s == "mm") {
     OutNumU_n.value = Number(parsFlat(Dec_mm_n.value, 8)) + s;
-  }
+    }
 }
