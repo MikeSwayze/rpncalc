@@ -17,7 +17,7 @@ const last_Unit = document.getElementById("lastUnit");
  my_display.addEventListener("keydown", (event) => {
   event.preventDefault();
   //alert(event.key);
-//  add_to_display(event.key);
+  add_to_display(event.key);
  });
  my_convert.addEventListener("input", (event) => {
   event.preventDefault();
