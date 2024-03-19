@@ -14,11 +14,11 @@ const OutNumU_n = document.getElementById("OutNumU");
 const invFlag = document.getElementById("inv");
 const last_Unit = document.getElementById("lastUnit");
 //  get keyboard events
-my_display.addEventListener("keydown", (event) => {
-  event.preventDefault();
+//my_display.addEventListener("keydown", (event) => {
+//  event.preventDefault();
   //alert(event.key);
-  add_to_display(event.key);
-});
+//  add_to_display(event.key);
+//});
 my_convert.addEventListener("input", (event) => {
   event.preventDefault();
   fis_convert();
