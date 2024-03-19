@@ -26,7 +26,7 @@
       <ol id="MyNumberList" tabindex="-1" ></ol> <!-- no white space children) -->                               
     </div>
     <div id="MyDisplay" class="MyDisplay">   
-      <input type="text" id="my_display" name="my_display" placeholder="0"tabindex="0" oninput=convert_entry()></input> 
+      <input type="text" id="my_display" name="my_display" placeholder="0"tabindex="0" readonly=true oninput=convert_entry()></input> 
     </div>
   <div id="buttons" class="buttons">
       <button id="CE" name="ClearEntry"tabindex="-1" value="CE" onclick=add_to_display(value)>CE</button>
@@ -76,11 +76,11 @@
       <input type="text" id="last_x" name="last_x" placeholder="0"tabindex="-1">  Last X</input>
     </div>
     <div id="div1" class="radio_button">
-      <input type="radio" id="fis" name="fis"  tabindex="-1" onclick="chk_units()" checked> 
+      <input type="radio" id="fis" name="fis"  tabindex="-1" onclick="chk_units()" > 
       <label for="fis">fis </label>
       <input type="radio" id="mm" name="fis"  tabindex="-1" onclick="chk_units()">   
       <label for="mm">mm</label>
-      <input type="radio" id="units" name="fis"  tabindex="-1"  onclick="chk_units()"> 
+      <input type="radio" id="units" name="fis"  tabindex="-1"  onclick="chk_units()" checked> 
       <label for="units">units</label>
     </div>
   </div>
