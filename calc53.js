@@ -1228,8 +1228,8 @@ function add_to_display(data) {
 
     if (x.search(/[f-x]{1,2}/i) == -1) {
       //no units number only
-      x = parsFlat(1 / x, 8);
-      x = Number(x).toPrecision();
+      x = 1 / x ;
+      x = Number(x);
       if (x.toString().includes(".")) {
       } else {
         x = x + ".";
@@ -1594,20 +1594,13 @@ function parsFlat(x, pF) {
       pF = Number(y.toString().lastIndexOf("0000"));
       parsIt();    
     }
-    if (y.toString().includes("000")) {
-      pF = Number(y.toString().lastIndexOf("000"));
-      parsIt();
-    }
+   
     if (y.toString().includes("99999")) {
       pF = Number(y.toString().lastIndexOf("99999"));
       parsIt();
     }
         if (y.toString().includes("9999")) {
       pF = Number(y.toString().lastIndexOf("9999"));
-      parsIt();
-    }
-        if (y.toString().includes("999")) {
-      pF = Number(y.toString().lastIndexOf("999"));
       parsIt();
     }
         if (y.toString().includes("666666")) {
