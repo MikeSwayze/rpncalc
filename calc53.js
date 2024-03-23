@@ -13,12 +13,23 @@ const UnitEx_n = document.getElementById("UnitExp_");
 const OutNumU_n = document.getElementById("OutNumU");
 const invFlag = document.getElementById("inv");
 const last_Unit = document.getElementById("lastUnit");
+const btn = document.getElementById("buttons");
+
+btn.addEventListener("touchend", (event) =>{
+  hovBtn=document.getElementById(event.target.id);
+  hovBtn.style.backgroundColor = "silver";
+  hovBtn.style.borderColor = "black";
+console.log(event.target.id);
+});
+
+
+
 //  get keyboard events
- my_display.addEventListener("keydown", (event) => {
-  event.preventDefault();
-  //alert(event.key);
-  add_to_display(event.key);
- });
+// my_display.addEventListener("keydown", (event) => {
+//  event.preventDefault();
+    //alert(event.key); 
+//  add_to_display(event.key);
+// });
  my_convert.addEventListener("input", (event) => {
   event.preventDefault();
   fis_convert();
@@ -50,7 +61,6 @@ function add_to_display(data) {
   let x = w;
 
   // trap adding digits/units to end of /\*\*\-?d+$/ string
-
   // if btn value is number,unit,decimal point
   if (
     data == "1" ||
