@@ -559,7 +559,7 @@ function add_to_display(data) {
     if (x.search(/([f-x]{1,2})/i) == -1) {
       // neither have units
       l = Number(x) * Number(x);
-      l = Number(parsFlat(l, 8)).toPrecision();
+      l = parsFlat(Number(l), 8).toPrecision();
       if (l.toString().includes(".")) {
       } else {
         l = l + ".";
@@ -1148,6 +1148,7 @@ function add_to_display(data) {
     }
     if (w.includes("**")) {
       alert("single unit only");
+      data = "";
       break oops;
     }
     if (x.search(/[f-x]{1,2}/i) > -1) {
@@ -1324,7 +1325,7 @@ function add_to_display(data) {
       data = "";
       break oops5;
     }
-    if (x.includes("-")) {
+    if (x.startsWith("-")) {
       data = "";
       alert("Keep it REAL");
       break oops5;
@@ -1437,7 +1438,7 @@ function add_to_display(data) {
       if (invFlag.checked == true) {
         if (-1 <= Number(x) <= 1) {
           x = parsFlat(Math.asin(Number(x)), 8);
-          x = parsFlat((Number(x) * 180) / Math.PI);
+          x = parsFlat(((Number(x) * 180) / Math.PI),8);
         } else {
           alert("Between -1 and 1");
           data = "";
@@ -1485,7 +1486,7 @@ function add_to_display(data) {
       if (invFlag.checked == true) {
         if (-1 <= Number(x) <= 1) {
           x = parsFlat(Math.acos(Number(x)), 8);
-          x = parsFlat((Number(x) * 180) / Math.PI);
+          x = parsFlat(((Number(x) * 180) / Math.PI),8);
         } else {
           alert("Between -1 and 1");
           data = "";
@@ -1532,7 +1533,7 @@ function add_to_display(data) {
       }
       if (invFlag.checked == true) {
         x = parsFlat(Math.atan(Number(x)), 8);
-        x = parsFlat((Number(x) * 180) / Math.PI);
+        x = parsFlat(((Number(x) * 180) / Math.PI),8);
       } else {
         if (-180 <= Number(x) <= 180) {
           x = parsFlat(Math.tan(Number((x * Math.PI) / 180)), 8);
