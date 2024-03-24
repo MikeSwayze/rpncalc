@@ -19,7 +19,7 @@ btn.addEventListener("touchend", (event) =>{
   hovBtn=document.getElementById(event.target.id);
   hovBtn.style.backgroundColor = "silver";
   hovBtn.style.borderColor = "black";
-console.log(event.target.id);
+// console.log(event.target.id);
 });
 
 
