@@ -14,15 +14,22 @@ const OutNumU_n = document.getElementById("OutNumU");
 const invFlag = document.getElementById("inv");
 const last_Unit = document.getElementById("lastUnit");
 const btn = document.getElementById("buttons");
-
+const Stack = document.getElementById("stack");
+// hover end overwrite
 btn.addEventListener("touchend", (event) =>{
-  hovBtn=document.getElementById(event.target.id);
+  const hovBtn=document.getElementById(event.target.id);
   hovBtn.style.backgroundColor = "silver";
   hovBtn.style.borderColor = "black";
 // console.log(event.target.id);
 });
-
-
+// list click selection
+  Stack.addEventListener("click", (event) => {
+    const ListSel = document.getElementById(event.target.id);
+   my_display.value = ListSel.innerText;
+    my_display.focus();
+    fis_convert();
+    convert_entry();
+  });
 
 //  get keyboard events
 // my_display.addEventListener("keydown", (event) => {
@@ -52,7 +59,7 @@ function add_to_display(data) {
   let a = my_display.value;
   let n = 1;
   let w = my_display.value.trim();
-  let z = document.createElement("li");
+  //let z = document.createElement("li");
   let u = w.split(" ");
   w = u.join("");
   w = w.trim();
@@ -225,6 +232,7 @@ function add_to_display(data) {
       //move to stack
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
@@ -400,6 +408,7 @@ function add_to_display(data) {
       }
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
@@ -511,6 +520,7 @@ function add_to_display(data) {
       }
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
@@ -643,6 +653,7 @@ function add_to_display(data) {
     convert_entry();
     z = document.createElement("li");
     z.innerText = OutNumU_n.value;
+    z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
     My_ol.appendChild(z);
     my_display.value = ""; //update display
     my_convert.value = 0; //reset  converter
@@ -859,6 +870,7 @@ function add_to_display(data) {
       My_ol.removeChild(My_ol.lastElementChild);
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
@@ -1073,6 +1085,7 @@ function add_to_display(data) {
       My_ol.removeChild(My_ol.lastElementChild);
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
@@ -1230,7 +1243,7 @@ function add_to_display(data) {
     if (x.search(/[f-x]{1,2}/i) == -1) {
       //no units number only
       x = 1 / x ;
-      x = Number(x);
+      x = parsFlat(Number(x),8);
       if (x.toString().includes(".")) {
       } else {
         x = x + ".";
@@ -1313,6 +1326,7 @@ function add_to_display(data) {
     }
     z = document.createElement("li");
     z.innerText = OutNumU_n.value;
+    z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
     My_ol.appendChild(z);
     my_display.value = ""; //update display
     my_convert.value = 0; //reset  converter
@@ -1416,6 +1430,7 @@ function add_to_display(data) {
     }
     z = document.createElement("li");
     z.innerText = OutNumU_n.value;
+    z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
     My_ol.appendChild(z);
     my_display.value = ""; //update display
     my_convert.value = 0; //reset  converter
@@ -1464,6 +1479,7 @@ function add_to_display(data) {
       convert_entry();
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0;
@@ -1512,6 +1528,7 @@ function add_to_display(data) {
       convert_entry();
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0;
@@ -1554,6 +1571,7 @@ function add_to_display(data) {
       convert_entry();
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0;
