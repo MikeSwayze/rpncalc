@@ -175,6 +175,8 @@
   list-style: none;
   text-justify: right;
   text-align: right;
+  pointer-events: all;
+  touch-action: auto;
 }
 
 .MyDisplay {
