@@ -57,6 +57,7 @@ chk_units();
 // add_to_display
 function add_to_display(data) {
   let a = my_display.value;
+  if (a.length == 0){a=0};
   let n = 1;
   let w = my_display.value.trim();
   //let z = document.createElement("li");
@@ -299,6 +300,7 @@ function add_to_display(data) {
   //operators
   oops2: if (data == "+") {
     x = OutNumU_n.value;
+    if (x.length == 0) {x="0"};
     if (My_ol.hasChildNodes()) {
       w = My_ol.lastElementChild.innerText;
 
@@ -417,6 +419,7 @@ function add_to_display(data) {
   oops3: 
   if (data == "-") {
     x = OutNumU_n.value;
+    if (x.length == 0){x="0"};
     last_x.value = x.trim();
 
     if (My_ol.hasChildNodes()) {
@@ -536,7 +539,7 @@ function add_to_display(data) {
     let z = 0;
 
     x = OutNumU_n.value.trim();
-
+    if (x.length==0) {x="0"};
     if (x.search(/([f-x]{1,2})/i) > -1) {
       //both have units
       j = DecFt_n.value.trim();
@@ -669,7 +672,7 @@ function add_to_display(data) {
     let z = 0;
 
     x = OutNumU_n.value;
-
+    if (x.length==0){x="0"};
     if (My_ol.hasChildNodes()) {
       w = My_ol.lastElementChild.innerText;
       x = OutNumU_n.value.trim();
@@ -886,6 +889,7 @@ function add_to_display(data) {
     let z = "";
 
     x = OutNumU_n.value.trim();
+    if (x.length == 0){x="0"};
 
     if (My_ol.hasChildNodes()) {
       w = My_ol.lastElementChild.innerText;
@@ -1229,6 +1233,7 @@ function add_to_display(data) {
   }
   oops4: if (data == "1/x") {
     x = OutNumU_n.value;
+    if(x.length==0){x="0"};
     if (x == "" || x == 0) {
       data = "";
       break oops4;
@@ -1333,6 +1338,7 @@ function add_to_display(data) {
   }
   oops5: if (data == "sqrt") {
     x = OutNumU_n.value;
+    if (x.length == 0){x="0"};
     s = Number(UnitEx_n.value);
     let NegS = 0;
     if (x == "" || x == 0) {
@@ -1439,6 +1445,7 @@ function add_to_display(data) {
   }
   oops6: if (data == "sin") {
     x = my_display.value;
+    if (x.length == 0){x="0"};
     x = x.trim();
     if (x == "") {
       data = "";
@@ -1488,6 +1495,7 @@ function add_to_display(data) {
   }
   oops7: if (data == "cos") {
     x = my_display.value;
+    if (x.length == 0){x="0"};
     x = x.trim();
     if (x == "") {
       data = "";
@@ -1537,6 +1545,7 @@ function add_to_display(data) {
   }
   oops8: if (data == "tan") {
     x = my_display.value;
+    if (x.length == 0){x="0"};
     x = x.trim();
     if (x == "") {
       data = "";

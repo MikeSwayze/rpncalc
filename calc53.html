@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fis-rpn Calculator</title>
   <link rel="stylesheet" href="calc53.css"> </link>
-  
+  <style>  </style>
 
   </head>
 <body>
 <div>
  <div class="convForm" id="convForm" name="convForm">
     <input type="text" id="my_convert" name="my_convert" placeholder="0" tabindex="-1" oninput=convert_entry()></input>
+    <input type="text" id="lastUnit" name="lastUnit" placeholder="" tabindex="-1"></input>
     <input type="number" id="UnitExp_" name="UnitExp_" value=1 placeholder="1" tabindex="-1"></input>
     <input type="text" id="OutNumU" name="OutNumU" value=0 placeholder="0" tabindex="-1"></input>
     <input type="number" id="DecFt" name="DecFt" value=0 placeholder="0" tabindex="-1"></input>
@@ -20,24 +21,24 @@
     <input type="number" id="DecMeter" name="DecMeter" value=0 placeholder="0" tabindex="-1"></input>
     <input type="number" id="Dec_mm" name="Dec_mm"value=0 placeholder="0" tabindex="-1"></input>
  </div >
- <di class="fisform" id="fisform">
+ <div class="fisform" id="fisform">
    <div id="stack">   
       <ol id="MyNumberList" tabindex="-1" ></ol> <!-- no white space children) -->                               
     </div>
     <div id="MyDisplay" class="MyDisplay">   
-      <input type="text" id="my_display" name="my_display" placeholder="0"tabindex="0" oninput=convert_entry()></input> 
+      <input type="text" id="my_display" name="my_display" placeholder="0"tabindex="0" readonly=true oninput=convert_entry()></input> 
     </div>
   <div id="buttons" class="buttons">
-      <button id="CE" name="ClearEntry"tabindex="-1" value="CE" onclick=add_to_display(value)>CE</button>
-      <button id="C" name="Clear" tabindex="-1" value="C" onclick=add_to_display(value)>C</button>
-      <button id="plusminus" name="+/-" tabindex="-1" value="+/-" onclick=add_to_display(value)>+/-</button>
-
-      <button id="enter" name="Enter" tabindex="-1" value="Enter" onclick=add_to_display(value)>Enter</button>
-
       <button id="ft" name="ft" tabindex="-1" value="ft" onclick=add_to_display(value)>ft</button>
       <button id="in" name="in" tabindex="-1" value="in" onclick=add_to_display(value)>in</button>
       <button id="sx" name="sx" tabindex="-1" value="sx" onclick=add_to_display(value)>sx</button>
       <button id="m" name="m" tabindex="-1" value="m" onclick=add_to_display(value)>m</button>
+     
+      <button id="CE" name="ClearEntry"tabindex="-1" value="CE" onclick=add_to_display(value)>CE</button>
+      <button id="C" name="Clear" tabindex="-1" value="C" onclick=add_to_display(value)>C</button>
+      <button id="plusminus" name="+/-" tabindex="-1" value="+/-" onclick=add_to_display(value)>+/-</button>
+      <button id="enter" name="Enter" tabindex="-1" value="Enter" onclick=add_to_display(value)>Enter</button>
+
       <button id="one" tabindex="-1" name="one" value="1" onclick=add_to_display(value)>1</button>
       <button id="two" tabindex="-1"name="two" value="2" onclick=add_to_display(value)>2</button>
       <button id="three" tabindex="-1"name="three" value="3" onclick=add_to_display(value)>3</button>
@@ -72,14 +73,14 @@
        inv</label>
        </div>
     <div id="LastX2" name="LastX2" tabindex="-1" >
-      <input type="text" id="last_x" name="last_x" placeholder="0"tabindex="-1">Last X</input>
+      <input type="text" id="last_x" name="last_x" placeholder="0"tabindex="-1">  Last X</input>
     </div>
     <div id="div1" class="radio_button">
-      <input type="radio" id="fis" name="fis"  tabindex="-1" onclick="chk_units()" checked> 
+      <input type="radio" id="fis" name="fis"  tabindex="-1" onclick="chk_units()" > 
       <label for="fis">fis </label>
       <input type="radio" id="mm" name="fis"  tabindex="-1" onclick="chk_units()">   
       <label for="mm">mm</label>
-      <input type="radio" id="units" name="fis"  tabindex="-1"  onclick="chk_units()"> 
+      <input type="radio" id="units" name="fis"  tabindex="-1"  onclick="chk_units()" checked> 
       <label for="units">units</label>
     </div>
   </div>
