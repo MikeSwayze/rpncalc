@@ -33,11 +33,11 @@ btn.addEventListener("touchend", (event) =>{
 
 //  get keyboard events
 
-my_display.addEventListener("keyup", (event) => {
-  event.preventDefault();
-   // alert(event.key); 
-  add_to_display(event.key);
-});
+// my_display.addEventListener("keyup", (event) => {
+//   event.preventDefault();
+//    // alert(event.key); 
+//   add_to_display(event.key);
+// });
 my_convert.addEventListener("input", (event) => {
   event.preventDefault();
   fis_convert();
