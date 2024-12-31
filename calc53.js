@@ -25,24 +25,25 @@ btn.addEventListener("touchend", (event) =>{
 // list click selection
   Stack.addEventListener("click", (event) => {
     const ListSel = document.getElementById(event.target.id);
-   my_display.value = ListSel.innerText;
+  my_display.value = ListSel.innerText;
     my_display.focus();
     fis_convert();
     convert_entry();
   });
 
 //  get keyboard events
-// my_display.addEventListener("keydown", (event) => {
-//  event.preventDefault();
-    //alert(event.key); 
-//  add_to_display(event.key);
-// });
- my_convert.addEventListener("input", (event) => {
+
+my_display.addEventListener("keyup", (event) => {
+  event.preventDefault();
+   // alert(event.key); 
+  add_to_display(event.key);
+});
+my_convert.addEventListener("input", (event) => {
   event.preventDefault();
   fis_convert();
   convert_entry();
   my_convert.focus();
- });
+});
 
 // fis  data  entry  non-unit units chk (display units)
 function chk_units() {
@@ -237,6 +238,7 @@ function add_to_display(data) {
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
+      
     }
   }
   if (data == "c" || data == "C" || data == "Backspace") {
@@ -280,12 +282,16 @@ function add_to_display(data) {
     }
   }
   //delete
-  if (data == "CE") {
+  if (data == "CE") { CE()};
+
+  function CE(){
+    w=my_display.value;
     if (w.length > 0) {
-      my_display.value = "";
+      my_display.value = null; //update display
+      my_convert.value = 0; //reset  converter
       //  w = my_display.value.trim();
     }
-    if (w.length == 0 || w.value == "") {
+    if (w.length == 0 || w.value == "" ||w.value == null || w.value == "0") {
       if (My_ol.hasChildNodes()) {
         w = My_ol.lastElementChild.innerText;
         my_display.value = w;
@@ -414,7 +420,8 @@ function add_to_display(data) {
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
-    }
+      }
+      CE();
   }
   oops3: 
   if (data == "-") {
@@ -528,6 +535,7 @@ function add_to_display(data) {
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
     }
+    CE();
   }
   if (data == "x**2") {
     let j = 0;
@@ -659,7 +667,8 @@ function add_to_display(data) {
     z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
     My_ol.appendChild(z);
     my_display.value = ""; //update display
-    my_convert.value = 0; //reset  converter
+      my_convert.value = 0; //reset  converter
+      CE();
   }
 
   if (data == "*") {
@@ -877,6 +886,8 @@ function add_to_display(data) {
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
+      CE();
+
     }
   }
   if (data == "/") {
@@ -1093,6 +1104,7 @@ function add_to_display(data) {
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
+      CE();
     }
   }
   //single  operand
@@ -1334,7 +1346,8 @@ function add_to_display(data) {
     z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
     My_ol.appendChild(z);
     my_display.value = ""; //update display
-    my_convert.value = 0; //reset  converter
+      my_convert.value = 0; //reset  converter
+      CE();
   }
   oops5: if (data == "sqrt") {
     x = OutNumU_n.value;
@@ -1439,7 +1452,8 @@ function add_to_display(data) {
     z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
     My_ol.appendChild(z);
     my_display.value = ""; //update display
-    my_convert.value = 0; //reset  converter
+      my_convert.value = 0; //reset  converter
+      CE();
   }
   if (data == "inv") {
   }
@@ -1489,7 +1503,8 @@ function add_to_display(data) {
       z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
       My_ol.appendChild(z);
       my_display.value = ""; //update display
-      my_convert.value = 0;
+      my_convert.value = 0; //reset  converter
+      CE();
       invFlag.checked = false; //reset  converter
     }
   }
@@ -1539,7 +1554,9 @@ function add_to_display(data) {
       z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
       My_ol.appendChild(z);
       my_display.value = ""; //update display
-      my_convert.value = 0;
+      my_convert.value = 0; //reset  converter
+      CE();
+
       invFlag.checked = false; //reset  converter
     }
   }
@@ -1583,7 +1600,11 @@ function add_to_display(data) {
       z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
       My_ol.appendChild(z);
       my_display.value = ""; //update display
-      my_convert.value = 0;
+      my_convert.value = 0; //reset  converter
+      CE();
+
+ //update display
+   
       invFlag.checked = false; //reset  converter
     }
   }
