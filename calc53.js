@@ -16,20 +16,20 @@ const last_Unit = document.getElementById("lastUnit");
 const btn = document.getElementById("buttons");
 const Stack = document.getElementById("stack");
 // hover end overwrite
-btn.addEventListener("touchend", (event) =>{
-  const hovBtn=document.getElementById(event.target.id);
+btn.addEventListener("touchend", (event) => {
+  const hovBtn = document.getElementById(event.target.id);
   hovBtn.style.backgroundColor = "silver";
   hovBtn.style.borderColor = "black";
-// console.log(event.target.id);
+  // console.log(event.target.id);
 });
 // list click selection
-  Stack.addEventListener("click", (event) => {
-    const ListSel = document.getElementById(event.target.id);
+Stack.addEventListener("click", (event) => {
+  const ListSel = document.getElementById(event.target.id);
   my_display.value = ListSel.innerText;
-    my_display.focus();
-    fis_convert();
-    convert_entry();
-  });
+  my_display.focus();
+  fis_convert();
+  convert_entry();
+});
 
 //  get keyboard events
 
@@ -58,7 +58,7 @@ chk_units();
 // add_to_display
 function add_to_display(data) {
   let a = my_display.value;
-  if (a.length == 0){a=0};
+  if (a.length == 0) { a = 0 };
   let n = 1;
   let w = my_display.value.trim();
   //let z = document.createElement("li");
@@ -102,7 +102,7 @@ function add_to_display(data) {
   if (data == "Backspace") {
     data = "c";
   }
-  if (data == "ft" || data == "in" || data == "sx" || data == "m" || data == "mm"){
+  if (data == "ft" || data == "in" || data == "sx" || data == "m" || data == "mm") {
     last_Unit.value = data;
   }
   // validate input units--
@@ -234,11 +234,11 @@ function add_to_display(data) {
       //move to stack
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
-      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
-      
+
     }
   }
   if (data == "c" || data == "C" || data == "Backspace") {
@@ -282,22 +282,23 @@ function add_to_display(data) {
     }
   }
   //delete
-  if (data == "CE") { CE()};
+  if (data == "CE") { CE() };
 
-  function CE(){
-    w=my_display.value;
+  function CE() {
+    w = my_display.value;
     if (w.length > 0) {
       my_display.value = null; //update display
       my_convert.value = 0; //reset  converter
       //  w = my_display.value.trim();
     }
-    if (w.length == 0 || w.value == "" ||w.value == null || w.value == "0") {
+    if (w.length == 0 || w.value == "" || w.value == null || w.value == "0") {
       if (My_ol.hasChildNodes()) {
         w = My_ol.lastElementChild.innerText;
         my_display.value = w;
         My_ol.removeChild(My_ol.lastElementChild);
       }
     }
+    my_display.focus();
   }
   // return lastX value to display
   if (data == "LastX" || data == "L" || data == "l") {
@@ -306,7 +307,7 @@ function add_to_display(data) {
   //operators
   oops2: if (data == "+") {
     x = OutNumU_n.value;
-    if (x.length == 0) {x="0"};
+    if (x.length == 0) { x = "0" };
     if (My_ol.hasChildNodes()) {
       w = My_ol.lastElementChild.innerText;
 
@@ -416,17 +417,17 @@ function add_to_display(data) {
       }
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
-      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
-      }
-      CE();
+    }
+    CE();
   }
-  oops3: 
+  oops3:
   if (data == "-") {
     x = OutNumU_n.value;
-    if (x.length == 0){x="0"};
+    if (x.length == 0) { x = "0" };
     last_x.value = x.trim();
 
     if (My_ol.hasChildNodes()) {
@@ -486,22 +487,21 @@ function add_to_display(data) {
           break oops3;
         }
       } else {
-        if (x.search(/([f-x]{1,2})/i) > -1 && w.search(/([f-x]{1,2})/i) > -1) 
-        {
+        if (x.search(/([f-x]{1,2})/i) > -1 && w.search(/([f-x]{1,2})/i) > -1) {
           //both have units
           n = 1;
           z = "";
-         l=DecFt_n.value;
-         my_display.value = My_ol.lastElementChild.innerText
-         My_ol.removeChild(My_ol.lastElementChild);
-         fis_convert();
-         convert_entry();
-         k=DecFt_n.value;
-         j=k-l;
-         j=parsFlat(Number(j),8);
-         my_display.value = j + "ft";
-         fis_convert();
-         convert_entry();
+          l = DecFt_n.value;
+          my_display.value = My_ol.lastElementChild.innerText
+          My_ol.removeChild(My_ol.lastElementChild);
+          fis_convert();
+          convert_entry();
+          k = DecFt_n.value;
+          j = k - l;
+          j = parsFlat(Number(j), 8);
+          my_display.value = j + "ft";
+          fis_convert();
+          convert_entry();
         }
         if (x.search(/([f-x]{1,2})/i) > -1 && w.search(/([f-x]{1,2})/i) == -1) {
           alert(" must be same units");
@@ -530,7 +530,7 @@ function add_to_display(data) {
       }
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
-      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
@@ -547,7 +547,7 @@ function add_to_display(data) {
     let z = 0;
 
     x = OutNumU_n.value.trim();
-    if (x.length==0) {x="0"};
+    if (x.length == 0) { x = "0" };
     if (x.search(/([f-x]{1,2})/i) > -1) {
       //both have units
       j = DecFt_n.value.trim();
@@ -664,11 +664,11 @@ function add_to_display(data) {
     convert_entry();
     z = document.createElement("li");
     z.innerText = OutNumU_n.value;
-    z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
+    z.id = "LItem" + My_ol.getElementsByTagName("li").length;
     My_ol.appendChild(z);
     my_display.value = ""; //update display
-      my_convert.value = 0; //reset  converter
-      CE();
+    my_convert.value = 0; //reset  converter
+    CE();
   }
 
   if (data == "*") {
@@ -681,7 +681,7 @@ function add_to_display(data) {
     let z = 0;
 
     x = OutNumU_n.value;
-    if (x.length==0){x="0"};
+    if (x.length == 0) { x = "0" };
     if (My_ol.hasChildNodes()) {
       w = My_ol.lastElementChild.innerText;
       x = OutNumU_n.value.trim();
@@ -882,7 +882,7 @@ function add_to_display(data) {
       My_ol.removeChild(My_ol.lastElementChild);
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
-      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
@@ -900,7 +900,7 @@ function add_to_display(data) {
     let z = "";
 
     x = OutNumU_n.value.trim();
-    if (x.length == 0){x="0"};
+    if (x.length == 0) { x = "0" };
 
     if (My_ol.hasChildNodes()) {
       w = My_ol.lastElementChild.innerText;
@@ -1100,7 +1100,7 @@ function add_to_display(data) {
       My_ol.removeChild(My_ol.lastElementChild);
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
-      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
@@ -1245,7 +1245,7 @@ function add_to_display(data) {
   }
   oops4: if (data == "1/x") {
     x = OutNumU_n.value;
-    if(x.length==0){x="0"};
+    if (x.length == 0) { x = "0" };
     if (x == "" || x == 0) {
       data = "";
       break oops4;
@@ -1259,8 +1259,8 @@ function add_to_display(data) {
 
     if (x.search(/[f-x]{1,2}/i) == -1) {
       //no units number only
-      x = 1 / x ;
-      x = parsFlat(Number(x),8);
+      x = 1 / x;
+      x = parsFlat(Number(x), 8);
       if (x.toString().includes(".")) {
       } else {
         x = x + ".";
@@ -1343,15 +1343,15 @@ function add_to_display(data) {
     }
     z = document.createElement("li");
     z.innerText = OutNumU_n.value;
-    z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
+    z.id = "LItem" + My_ol.getElementsByTagName("li").length;
     My_ol.appendChild(z);
     my_display.value = ""; //update display
-      my_convert.value = 0; //reset  converter
-      CE();
+    my_convert.value = 0; //reset  converter
+    CE();
   }
   oops5: if (data == "sqrt") {
     x = OutNumU_n.value;
-    if (x.length == 0){x="0"};
+    if (x.length == 0) { x = "0" };
     s = Number(UnitEx_n.value);
     let NegS = 0;
     if (x == "" || x == 0) {
@@ -1449,17 +1449,17 @@ function add_to_display(data) {
     }
     z = document.createElement("li");
     z.innerText = OutNumU_n.value;
-    z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
+    z.id = "LItem" + My_ol.getElementsByTagName("li").length;
     My_ol.appendChild(z);
     my_display.value = ""; //update display
-      my_convert.value = 0; //reset  converter
-      CE();
+    my_convert.value = 0; //reset  converter
+    CE();
   }
   if (data == "inv") {
   }
   oops6: if (data == "sin") {
     x = my_display.value;
-    if (x.length == 0){x="0"};
+    if (x.length == 0) { x = "0" };
     x = x.trim();
     if (x == "") {
       data = "";
@@ -1474,7 +1474,7 @@ function add_to_display(data) {
       if (invFlag.checked == true) {
         if (-1 <= Number(x) <= 1) {
           x = parsFlat(Math.asin(Number(x)), 8);
-          x = parsFlat(((Number(x) * 180) / Math.PI),8);
+          x = parsFlat(((Number(x) * 180) / Math.PI), 8);
         } else {
           alert("Between -1 and 1");
           data = "";
@@ -1500,7 +1500,7 @@ function add_to_display(data) {
       convert_entry();
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
-      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
@@ -1510,7 +1510,7 @@ function add_to_display(data) {
   }
   oops7: if (data == "cos") {
     x = my_display.value;
-    if (x.length == 0){x="0"};
+    if (x.length == 0) { x = "0" };
     x = x.trim();
     if (x == "") {
       data = "";
@@ -1525,7 +1525,7 @@ function add_to_display(data) {
       if (invFlag.checked == true) {
         if (-1 <= Number(x) <= 1) {
           x = parsFlat(Math.acos(Number(x)), 8);
-          x = parsFlat(((Number(x) * 180) / Math.PI),8);
+          x = parsFlat(((Number(x) * 180) / Math.PI), 8);
         } else {
           alert("Between -1 and 1");
           data = "";
@@ -1551,7 +1551,7 @@ function add_to_display(data) {
       convert_entry();
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
-      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
@@ -1562,7 +1562,7 @@ function add_to_display(data) {
   }
   oops8: if (data == "tan") {
     x = my_display.value;
-    if (x.length == 0){x="0"};
+    if (x.length == 0) { x = "0" };
     x = x.trim();
     if (x == "") {
       data = "";
@@ -1576,7 +1576,7 @@ function add_to_display(data) {
       }
       if (invFlag.checked == true) {
         x = parsFlat(Math.atan(Number(x)), 8);
-        x = parsFlat(((Number(x) * 180) / Math.PI),8);
+        x = parsFlat(((Number(x) * 180) / Math.PI), 8);
       } else {
         if (-180 <= Number(x) <= 180) {
           x = parsFlat(Math.tan(Number((x * Math.PI) / 180)), 8);
@@ -1597,14 +1597,14 @@ function add_to_display(data) {
       convert_entry();
       z = document.createElement("li");
       z.innerText = OutNumU_n.value;
-      z.id = "LItem" + My_ol.getElementsByTagName("li").length;  
+      z.id = "LItem" + My_ol.getElementsByTagName("li").length;
       My_ol.appendChild(z);
       my_display.value = ""; //update display
       my_convert.value = 0; //reset  converter
       CE();
 
- //update display
-   
+      //update display
+
       invFlag.checked = false; //reset  converter
     }
   }
@@ -1618,52 +1618,51 @@ function fis_convert() {
 }
 
 function parsFlat(x, pF) {
-     
-      if (Math.abs(x) < 0.1) {pF = pF + 1 };
-      if (Math.abs(x) < 0.01) {pF = pF + 2 };
-      if (Math.abs(x) < 0.001) { pF = pF + 3};
-      if (Math.abs(x) < 0.0001) {pF = pF + 4};
-      if (Math.abs(x) < 0.00001) {pF = pF + 5};
+
+  if (Math.abs(x) < 0.1) { pF = pF + 1 };
+  if (Math.abs(x) < 0.01) { pF = pF + 2 };
+  if (Math.abs(x) < 0.001) { pF = pF + 3 };
+  if (Math.abs(x) < 0.0001) { pF = pF + 4 };
+  if (Math.abs(x) < 0.00001) { pF = pF + 5 };
   pF = Math.round(Number(pF));
-  if (0 < pF < 100) {} else { pF = 8 };
-  if (pF == NaN) {pF = 8};
-    let y = Number(x);
-  function parsIt() 
-  {
+  if (0 < pF < 100) { } else { pF = 8 };
+  if (pF == NaN) { pF = 8 };
+  let y = Number(x);
+  function parsIt() {
     y = y * Math.pow(10, pF);
     y = Math.round(y);
     y = y / Math.pow(10, pF);
     y = Number(y);
   }
-    if (y.toString().includes("00000")) {
-      pF = Number(y.toString().lastIndexOf("00000"));
-      parsIt(); 
-    }
-    if (y.toString().includes("0000")) {
-      pF = Number(y.toString().lastIndexOf("0000"));
-      parsIt();    
-    }
-   
-    if (y.toString().includes("99999")) {
-      pF = Number(y.toString().lastIndexOf("99999"));
-      parsIt();
-    }
-        if (y.toString().includes("9999")) {
-      pF = Number(y.toString().lastIndexOf("9999"));
-      parsIt();
-    }
-        if (y.toString().includes("666666")) {
-      pF = Number(y.toString().lastIndexOf("666666"));
-      parsIt();
-    }
-        if (y.toString().includes("333333")) {
-      pF = Number(y.toString().lastIndexOf("333333"));
-      parsIt();
-    }
-    if (y.toString().includes("00000")) {
-      pF = Number(y.toString().lastIndexOf("00000"));
-      parsIt(); 
-    }
+  if (y.toString().includes("00000")) {
+    pF = Number(y.toString().lastIndexOf("00000"));
+    parsIt();
+  }
+  if (y.toString().includes("0000")) {
+    pF = Number(y.toString().lastIndexOf("0000"));
+    parsIt();
+  }
+
+  if (y.toString().includes("99999")) {
+    pF = Number(y.toString().lastIndexOf("99999"));
+    parsIt();
+  }
+  if (y.toString().includes("9999")) {
+    pF = Number(y.toString().lastIndexOf("9999"));
+    parsIt();
+  }
+  if (y.toString().includes("666666")) {
+    pF = Number(y.toString().lastIndexOf("666666"));
+    parsIt();
+  }
+  if (y.toString().includes("333333")) {
+    pF = Number(y.toString().lastIndexOf("333333"));
+    parsIt();
+  }
+  if (y.toString().includes("00000")) {
+    pF = Number(y.toString().lastIndexOf("00000"));
+    parsIt();
+  }
 
   return y;
 }
@@ -1687,7 +1686,7 @@ function convert_entry() {
   }
   if (a.includes("**")) {
     const wArr = x.match(/-?\d*(\.\d*)?$/i);
-   if (wArr.length && wArr) {
+    if (wArr.length && wArr) {
       let y = wArr.shift();
       y = y.trim();
       UnitEx_n.value = Number(y);
@@ -1771,38 +1770,38 @@ function convert_entry() {
         "**" +
         UnitEx_n.value;
     }
-    if (chk_fis_unit.value == "units")  {
-      s=lastUnit.value; 
-      switch(s) {
+    if (chk_fis_unit.value == "units") {
+      s = lastUnit.value;
+      switch (s) {
         case "ft":
-        OutNumU_n.value =
-        Number(parsFlat(DecFt_n.value, 8)).toPrecision() +
-        s + "**" + UnitEx_n.value;
-        break;
+          OutNumU_n.value =
+            Number(parsFlat(DecFt_n.value, 8)).toPrecision() +
+            s + "**" + UnitEx_n.value;
+          break;
         case "in":
-        OutNumU_n.value =
-        Number(parsFlat(DecIn_n.value, 8)).toPrecision() +
-        s + "**" + UnitEx_n.value;
-        break;
+          OutNumU_n.value =
+            Number(parsFlat(DecIn_n.value, 8)).toPrecision() +
+            s + "**" + UnitEx_n.value;
+          break;
         case "sx":
-        OutNumU_n.value =
-        Number(parsFlat(DecSx_n.value, 8)).toPrecision() +
-        s + "**" + UnitEx_n.value;
-        break;
+          OutNumU_n.value =
+            Number(parsFlat(DecSx_n.value, 8)).toPrecision() +
+            s + "**" + UnitEx_n.value;
+          break;
         case "m":
-        OutNumU_n.value =
-        Number(parsFlat(DecMeter_n.value, 8)).toPrecision() +
-        s + "**" + UnitEx_n.value;
-        break;
+          OutNumU_n.value =
+            Number(parsFlat(DecMeter_n.value, 8)).toPrecision() +
+            s + "**" + UnitEx_n.value;
+          break;
         case "mm":
-        OutNumU_n.value =
-        Number(parsFlat(Dec_mm_n.value, 8)).toPrecision() +
-        s + "**" + UnitEx_n.value;
-        break;
+          OutNumU_n.value =
+            Number(parsFlat(Dec_mm_n.value, 8)).toPrecision() +
+            s + "**" + UnitEx_n.value;
+          break;
         default:
           break;
       }
-       
+
     }
   } else {
     if (a == "ft" || a == "in" || a == "sx" || a == "m" || a == "mm") {
@@ -1863,18 +1862,15 @@ function convert_entry() {
           n = n + 1;
         } else {
           if (
-            x.search(/^(-?\d*(\.\d*)?)(\e[+|-]?\d*(\.\d*)?)?([f-x]{1,2})/i) == -1) 
-            {
+            x.search(/^(-?\d*(\.\d*)?)(\e[+|-]?\d*(\.\d*)?)?([f-x]{1,2})/i) == -1) {
             x = "";
           }
         }
       }
       if (n == 1) {
         OutUnit = s;
-        if ((s == "ft") && (chk_fis_unit.value == "fis"))
-        { OutUnit= "fis"}; 
-        if ((s == "mm") && (chk_fis_unit.value == "mm"))
-        { OutUnit= "metric"};
+        if ((s == "ft") && (chk_fis_unit.value == "fis")) { OutUnit = "fis" };
+        if ((s == "mm") && (chk_fis_unit.value == "mm")) { OutUnit = "metric" };
       } else {
         OutUnit = chk_fis_unit.value;
       }
@@ -1939,7 +1935,7 @@ function convert_entry() {
                 j = Number(j);
                 k = Number(k);
                 l = Number(l);
-                DecFt_n.value = parsFlat(l + ( k / 12) + (j / 16 / 12), 8);
+                DecFt_n.value = parsFlat(l + (k / 12) + (j / 16 / 12), 8);
                 DecMeter_n.value = parsFlat(0.3048 * Number(DecFt_n.value), 8);
                 break;
               case 6: //ft in sx
@@ -2020,9 +2016,9 @@ function convert_entry() {
 }
 
 function shuffle() {
-  DecIn_n.value = parsFlat((Number(DecFt_n.value) * 12),8);
+  DecIn_n.value = parsFlat((Number(DecFt_n.value) * 12), 8);
   DecSx_n.value = parsFlat((Number(DecFt_n.value) * 12 * 16), 8);
-  DecMeter_n.value = parsFlat((Number(DecFt_n.value) * 0.3048),8);
+  DecMeter_n.value = parsFlat((Number(DecFt_n.value) * 0.3048), 8);
   Dec_mm_n.value = parsFlat((Number(DecFt_n.value) * 0.3048 * 1000), 8);
 }
 function OutNum(s) {
@@ -2037,10 +2033,10 @@ function OutNum(s) {
     }
     let DecOutFt = Math.abs(Number(DecFt_n.value));
     OutFt = Math.trunc(DecOutFt);
-    let DecOutIn= parsFlat(((Number(DecOutFt) - Number(OutFt)) * 12),8);
-    let OutIn =Math.trunc(DecOutIn);
-    let DecOutSx = Number(parsFlat(((Number(DecOutIn) - Number(OutIn)) * 16),8)).toFixed(2);
-    let OutSx =  Math.round(DecOutSx);
+    let DecOutIn = parsFlat(((Number(DecOutFt) - Number(OutFt)) * 12), 8);
+    let OutIn = Math.trunc(DecOutIn);
+    let DecOutSx = Number(parsFlat(((Number(DecOutIn) - Number(OutIn)) * 16), 8)).toFixed(2);
+    let OutSx = Math.round(DecOutSx);
     OutFt = NegS + "" + OutFt;
     OutIn = NegS + "" + OutIn;
     OutSx = NegS + "" + OutSx;
@@ -2084,11 +2080,11 @@ function OutNum(s) {
     }
     OutNumU_n.value = z;
   }
-  if (s == "metric" ) {
+  if (s == "metric") {
     z = "";
     let OutM = Math.trunc(Number(DecMeter_n.value));
     let OutMm = Number(
-      parsFlat(Number((DecMeter_n.value - Math.trunc(DecMeter_n.value)) * 1000),8));
+      parsFlat(Number((DecMeter_n.value - Math.trunc(DecMeter_n.value)) * 1000), 8));
     OutMm = Math.round(Number(OutMm));
     if (OutMm == 1000) {
       OutMm = "";
@@ -2111,20 +2107,20 @@ function OutNum(s) {
     }
     OutNumU_n.value = z;
   }
-  if ( chk_fis_unit.value == "units") {s=lastUnit.value}
-    if (s == "ft") {
+  if (chk_fis_unit.value == "units") { s = lastUnit.value }
+  if (s == "ft") {
     OutNumU_n.value = Number(parsFlat(DecFt_n.value, 8)) + s;
-    }
-    if (s == "in") {
+  }
+  if (s == "in") {
     OutNumU_n.value = Number(parsFlat(DecIn_n.value, 8)) + s;
-    }
-    if (s == "sx") {
+  }
+  if (s == "sx") {
     OutNumU_n.value = Number(parsFlat(DecSx_n.value, 8)) + s;
-    }
-    if (s == "m") {
+  }
+  if (s == "m") {
     OutNumU_n.value = Number(parsFlat(DecMeter_n.value, 8)) + s;
-    }
-    if (s == "mm") {
+  }
+  if (s == "mm") {
     OutNumU_n.value = Number(parsFlat(Dec_mm_n.value, 8)) + s;
-    }
+  }
 }
